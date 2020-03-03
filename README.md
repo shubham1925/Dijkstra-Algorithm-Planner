@@ -1,1 +1,1 @@
-# Djikstra-Agorithm-Planner
+# Djikstra-Algorithm-Planner
