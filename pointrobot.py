@@ -20,11 +20,14 @@ def obstacle(x,y):
     
     point = Point(x,y)
     #define polygons by their vertices
-    rectangle = Polygon([(35-radius-clearance, 76+radius+clearance), (100+radius+clearance, 39+radius+clearance), 
-                         (95+radius+clearance, 30-radius-clearance), (30-radius-clearance, 68-radius-clearance)])
-    complex_polygon = Polygon([(25, 185), (75, 185), (100, 150), (75, 120), (50, 150), (20, 120)])
-    kite = Polygon([(225, 40+radius+clearance), (250+radius+clearance, 25), (225, 10-radius-clearance), (200-radius-clearance, 25)])
+#    rectangle = Polygon([(35-radius-clearance, 76+radius+clearance), (100+radius+clearance, 39+radius+clearance), 
+#                         (95+radius+clearance, 30-radius-clearance), (30-radius-clearance, 68-radius-clearance)])
+#    complex_polygon = Polygon([(25, 185), (75, 185), (100, 150), (75, 120), (50, 150), (20, 120)])
+#    kite = Polygon([(225, 40+radius+clearance), (250+radius+clearance, 25), (225, 10-radius-clearance), (200-radius-clearance, 25)])
     #print(point.distance(complex_polygon))
+    rectangle = Polygon([(35, 76), (100, 39),(95, 30), (30, 68)])
+    complex_polygon = Polygon([(25, 185), (75, 185),(100, 150), (75, 120), (50,150), (20,120)])
+    kite = Polygon([(225, 40), (250, 25),(225, 10), (200, 25)])
     #circle
     if(((x - (225))**2 + (y - (150))**2 - (25+radius+clearance)**2) <= 0) :
         print("obs - circ")
@@ -34,25 +37,58 @@ def obstacle(x,y):
         print("obs-ellip")
         flag = 1
     #check if point is inside polygon
-    if rectangle.contains(point) == True and point.distance(rectangle) <= radius+clearance:
+    if rectangle.contains(point) == True or point.distance(rectangle) <= radius+clearance:
         print("obs - rect")
         flag = 1
-    if complex_polygon.contains(point) == True and point.distance(complex_polygon) <= radius+clearance:
+    if complex_polygon.contains(point) == True or point.distance(complex_polygon) <= radius+clearance:
         print("obs - poly")
         flag = 1
-    if kite.contains(point) == True and point.distance(kite) <= radius+clearance:
+    if kite.contains(point) == True or point.distance(kite) <= radius+clearance:
         print("obs - kite")
         flag = 1
     return flag
 
 #check = obstacle(20,100)
 #init = [50,170]
+    
+def draw_obstacle(x,y):
+    flag = 0
+    
+    point = Point(x,y)
+    #define polygons by their vertices
+#    rectangle = Polygon([(35-radius-clearance, 76+radius+clearance), (100+radius+clearance, 39+radius+clearance), 
+#                         (95+radius+clearance, 30-radius-clearance), (30-radius-clearance, 68-radius-clearance)])
+#    complex_polygon = Polygon([(25, 185), (75, 185), (100, 150), (75, 120), (50, 150), (20, 120)])
+#    kite = Polygon([(225, 40+radius+clearance), (250+radius+clearance, 25), (225, 10-radius-clearance), (200-radius-clearance, 25)])
+    #print(point.distance(complex_polygon))
+    rectangle = Polygon([(35, 76), (100, 39),(95, 30), (30, 68)])
+    complex_polygon = Polygon([(25, 185), (75, 185),(100, 150), (75, 120), (50,150), (20,120)])
+    kite = Polygon([(225, 40), (250, 25),(225, 10), (200, 25)])
+    #circle
+    if(((x - (225))**2 + (y - (150))**2 - (25)**2) <= 0) :
+        print("obs - circ")
+        flag = 1
+    #ellipse
+    if (((x - (150))/(40))**2 + ((y - (100))/(20))**2 - 1) <= 0:
+        print("obs-ellip")
+        flag = 1
+    #check if point is inside polygon
+    if rectangle.contains(point) == True:
+        print("obs - rect")
+        flag = 1
+    if complex_polygon.contains(point) == True:
+        print("obs - poly")
+        flag = 1
+    if kite.contains(point) == True:
+        print("obs - kite")
+        flag = 1
+    return flag
 
 def generate_obstacle_map():
     obstacle_list = []
-    for x in range(0,301):
-        for y in range(0,301):
-            if obstacle(x,y):
+    for x in range(0,xmax+1):
+        for y in range(0,ymax+1):
+            if draw_obstacle(x,y):
                 obstacle_list.append([x,y])
     return obstacle_list
 
@@ -88,11 +124,10 @@ solution=[]
 
 allnodes.append(start)
 parent.append(start)
-cost=float('Inf')
-cost_list.append(cost)
 solution.append(goal)
 
-count=0
+cost=999999
+cost_list.append(cost)
 new_index=0
 cumulative_cost=0
 
@@ -216,7 +251,7 @@ while goal not in visited_nodes:
         allnodes.pop(new_index)
         cost_list.pop(new_index)
         parent.pop(new_index)
-        count=count+1
+        
         if len(cost_list) != 0:#cost_list != []:
             cumulative_cost=min(cost_list)
             new_index=cost_list.index(min(cost_list))
