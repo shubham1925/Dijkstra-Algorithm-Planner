@@ -72,7 +72,7 @@ def obstacle_space_square(point, clearance):
     # if line_1 >= 0 and line_3 <= 0 and line_2 <= 0 and line_4 >= 0:
     #     return True
 
-def obstacle_space_square(point):
+def obstacle_space_kite(point):
     # four points in a square
     x = point[0]
     y = point[1]
@@ -92,7 +92,7 @@ def obstacle_space_square(point):
     else:
         return False
 
-        
+
 
 def draw_obstacle(x,y):
     flag = 0    
