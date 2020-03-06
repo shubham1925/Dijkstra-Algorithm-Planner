@@ -109,3 +109,4 @@ The user will be prompted for:
 
 
 The time taken by the point robot to go from (5,5) to (295,195) is approximately 7 minutes 40 seconds
+Tested on IDE: Spyder Python version 3.7.4
