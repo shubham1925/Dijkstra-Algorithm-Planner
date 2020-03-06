@@ -3,6 +3,7 @@ from shapely.geometry import Point
 from shapely.geometry.polygon import Polygon
 import sys
 import pygame
+from pygame.locals import QUIT, MOUSEBUTTONUP
 import numpy as np
 import time
 
@@ -301,13 +302,19 @@ pygame.init()
 size = (xmax*scale_factor, ymax*scale_factor)
 win = pygame.display.set_mode((xmax*scale_factor, ymax*scale_factor))
 win.fill(WHITE)
-pygame.display.set_caption("Dijsktra algorithm")
-
-while animation_flag != 1:
+pygame.display.set_caption("Dijsktra algorithm - point robot")
+while True:
     win.fill(WHITE)
+    pygame.event.get()
+    for event in pygame.event.get():
+        if event.type == MOUSEBUTTONUP:
+            None
     for obs in obstacle_map:
         pygame.draw.rect(win, OBS_C, [obs[0]*scale_factor, (ymax-obs[1])*scale_factor,3,3])
         pygame.display.flip()
+        for event in pygame.event.get():
+            if event.type == MOUSEBUTTONUP:
+                None
         
     pygame.draw.rect(win, START_C, [start_x*scale_factor, (ymax-start_y)*scale_factor,3,3])
     pygame.draw.rect(win, GOAL_C, [goal_x*scale_factor, (ymax-goal_y)*scale_factor,3,3])
@@ -317,11 +324,20 @@ while animation_flag != 1:
         pygame.draw.rect(win, EXP_C, [vis[0]*scale_factor, (ymax-vis[1])*scale_factor,3,3])
         pygame.time.wait(1)
         pygame.display.flip()
-    
+        for event in pygame.event.get():
+            if event.type == MOUSEBUTTONUP:
+                None
+        
     for sol in solution:
         pygame.draw.rect(win, PATH_C, [sol[0]*scale_factor, (ymax-sol[1])*scale_factor,3,3])
         pygame.time.wait(1)
-        pygame.display.flip()        
-    time.sleep(10)
+        pygame.display.flip()
+        for event in pygame.event.get():
+            if event.type == MOUSEBUTTONUP:
+                None        
     animation_flag = 1
-pygame.quit()
+    while animation_flag == 1:
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
