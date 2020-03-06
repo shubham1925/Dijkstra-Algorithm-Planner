@@ -45,7 +45,30 @@ def obstacle(x,y):
 
 #check = obstacle(20,100)
 #init = [50,170]
+
+
+def obstacle_space_square(point, clearance):
+    # four points in a square
+    flag_check = 0
+    pt1 = [35,76]
+    pt2 = [100,39]
+    pt3 = [95,30]
+    pt4 = [30,68]
+
+    pt_x = point[0]
+    pt_y = point[1]
+
+    line_1 = ((y-76)*65) + ((x-35)*37)
+    line_2 = ((y-39)*(-5)) + ((x-100)*9)
+    line_1 = ((y-30)*5) - ((x-95)*38)
+    line_1 = ((y-68)*5) + ((x-30)*10)
     
+    
+    # if line_1 >= 0 and line_3 <= 0 and line_2 <= 0 and line_4 >= 0:
+    #     return True
+
+
+
 def draw_obstacle(x,y):
     flag = 0    
     point = Point(x,y)
