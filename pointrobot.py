@@ -129,16 +129,33 @@ def obstacle_space_polygon(point):
 
     x = point[0]
     y = point[1]
+    flag_1 = 0
+    flag_2 = 0
+    
+    quad_1_1 = ((y-150)*25) - ((x-50)*30)
+    quad_1_2 = ((y-120)*25) - ((x-75)*30)
+    quad_1_3 = ((y-150)*25) - ((x-100)*35)
+    quad_1_4 = ((y-185)*25) - ((x-75)*35)
+    
+    quad_2_1 = ((y-185)*5) - ((x-25)*65)
+    quad_2_2 = ((y-120)*30) - ((x-20)*30)
+    quad_2_3 = ((y-150)*25) - ((x-50)*35)
+    quad_2_4 = ((y-185)*(-50))
 
-    line_1 = ((y-185)*5) - ((x-25)*65)
-    line_2 = ((y-120)*30) - ((x-20)*30)
-    line_3 = ((y-150)*25) - ((x-50)*30)
-    line_4 = ((y-120)*25) - ((x-75)*30)
-    line_5 = ((y-150)*25) - ((x-100)*35)
-    line_6 = ((y-185)*(-50))
+    if quad_1_1 < 0 and quad_1_2 > 0 and quad_1_3 > 0 and quad_1_4 < 0:
+        flag_1 = 1
+    else:
+        flag_1 = 0
 
+    if quad_2_1 < 0 and quad_2_2 > 0 and quad_2_3 > 0 and quad_2_4 > 0:
+        flag_2 = 1
+    else:
+        flag_2 = 0
 
-
+    if flag_1 == 1 or flag_2 == 1:
+        return True
+    else:
+        return False
 
 def draw_obstacle(x,y):
     flag = 0    
