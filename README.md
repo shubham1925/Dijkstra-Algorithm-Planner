@@ -44,14 +44,23 @@ The program then backtracks the optimal path and outputs it in the form of animn
 
 ## **Running the code:**
 
-There are two .py files
+The code contains two .py files
 
 1. pointrobot.py
+
 2. rigidrobot.py
 
 Run the code on the commandline using the follwoing command `python3 pointrobot.py` and `rigidrobot.py`
 
-The user will be prompted to give the coordinates of the start node and the goal node. 
+**For point robot**:
+
+The user will be prompted for:
+
+1. Coordinates of the start node and the goal node 
+
+2. Radius of the robot ( radius = 0 )
+
+3. Clearnace of the robot ( clearance = 0 )
 
 `Enter x coordinate of start position: x_start`
 
@@ -61,4 +70,29 @@ The user will be prompted to give the coordinates of the start node and the goal
 
 `Enter y coordinate of goal position: y_goal`
 
+`Enter radius of the robot: 0 `
 
+`Enter clearance of the robot: 0`
+
+
+**For rogod robot**
+
+The user will be prompted for:
+
+1. Coordinates of the start node and the goal node 
+
+2. Radius of the robot
+
+3. Clearnace of the robot
+
+`Enter x coordinate of start position: x_start`
+
+`Enter y coordinate of start position: y_start`
+
+`Enter x coordinate of goal position: x_goal`
+
+`Enter y coordinate of goal position: y_goal`
+
+`Enter radius of the robot: `
+
+`Enter clearance of the robot:`
