@@ -55,19 +55,44 @@ def obstacle_space_square(point, clearance):
     pt3 = [95,30]
     pt4 = [30,68]
 
-    pt_x = point[0]
-    pt_y = point[1]
+    x = point[0]
+    y = point[1]
 
     line_1 = ((y-76)*65) + ((x-35)*37)
-    line_2 = ((y-39)*(-5)) + ((x-100)*9)
-    line_1 = ((y-30)*5) - ((x-95)*38)
-    line_1 = ((y-68)*5) + ((x-30)*10)
+    line_2 = ((y-39)*5) - ((x-100)*9)
+    line_3 = ((y-30)*65) + ((x-95)*38)
+    line_4 = ((y-68)*5) - ((x-30)*8)
+    
+    print("line1",line_1)
+    print("line2",line_2)
+    print("line3",line_3)
+    print("line4",line_4)
     
     
     # if line_1 >= 0 and line_3 <= 0 and line_2 <= 0 and line_4 >= 0:
     #     return True
 
+def obstacle_space_square(point):
+    # four points in a square
+    x = point[0]
+    y = point[1]
 
+    line_1 = ((y-25)*25) + ((x-200)*15)
+    line_2 = ((y-10)*25) - ((x-225)*15)
+    line_3 = ((y-25)*25) + ((x-250)*15)
+    line_4 = ((y-40)*25) - ((x-225)*15)
+    
+    print("line1",line_1)
+    print("line2",line_2)
+    print("line3",line_3)
+    print("line4",line_4)
+    
+    if line_1 > 0 and line_2 > 0 and line_3 < 0 and line_4 < 0:
+        return True
+    else:
+        return False
+
+        
 
 def draw_obstacle(x,y):
     flag = 0    
