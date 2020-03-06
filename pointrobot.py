@@ -143,7 +143,6 @@ def obstacle_space_polygon(point):
     quad_2_4 = ((y-185)*(-50))
 
     if quad_1_1 > 0 and quad_1_2 > 0 and quad_1_3 > 0 and quad_1_4 <= 0:
-
         flag_1 = 1
     else:
         flag_1 = 0
