@@ -92,7 +92,20 @@ def obstacle_space_kite(point):
     else:
         return False
 
+def obstacle_space_circle(point):
+    radius = 25
+    radius_x = 225
+    radius_y = 150
 
+    x = point[0]
+    y = point[1]
+
+    d = sqrt(((x-radius_x)**2) + ((y-radius_y)**2))
+
+    if d < radius:
+        return True
+    else:
+        return False
 
 def draw_obstacle(x,y):
     flag = 0    
