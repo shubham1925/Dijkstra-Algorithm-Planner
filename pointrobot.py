@@ -132,7 +132,7 @@ def obstacle_space_polygon(point):
     flag_1 = 0
     flag_2 = 0
     
-    quad_1_1 = ((y-150)*25) - ((x-50)*30)
+    quad_1_1 = ((y-150)*25) + ((x-50)*30)
     quad_1_2 = ((y-120)*25) - ((x-75)*30)
     quad_1_3 = ((y-150)*25) - ((x-100)*35)
     quad_1_4 = ((y-185)*25) - ((x-75)*35)
@@ -142,12 +142,13 @@ def obstacle_space_polygon(point):
     quad_2_3 = ((y-150)*25) - ((x-50)*35)
     quad_2_4 = ((y-185)*(-50))
 
-    if quad_1_1 < 0 and quad_1_2 > 0 and quad_1_3 > 0 and quad_1_4 < 0:
+    if quad_1_1 > 0 and quad_1_2 > 0 and quad_1_3 > 0 and quad_1_4 <= 0:
+
         flag_1 = 1
     else:
         flag_1 = 0
 
-    if quad_2_1 < 0 and quad_2_2 > 0 and quad_2_3 > 0 and quad_2_4 > 0:
+    if quad_2_1 < 0 and quad_2_2 > 0 and quad_2_3 >= 0 and quad_2_4 > 0:
         flag_2 = 1
     else:
         flag_2 = 0
