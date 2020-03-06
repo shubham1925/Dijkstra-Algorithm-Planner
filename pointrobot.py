@@ -63,14 +63,11 @@ def obstacle_space_rectangel(point):
     line_3 = ((y-30)*65) + ((x-95)*38)
     line_4 = ((y-68)*5) - ((x-30)*8)
     
-    print("line1",line_1)
-    print("line2",line_2)
-    print("line3",line_3)
-    print("line4",line_4)
     
-    
-    # if line_1 >= 0 and line_3 <= 0 and line_2 <= 0 and line_4 >= 0:
-    #     return True
+    if line_1 < 0 and line_2 > 0 and line_3 > 0 and line_4 < 0:
+        return True
+    else:
+        return False
 
 def obstacle_space_kite(point):
     # four points in a square
@@ -121,6 +118,27 @@ def obstacle_space_ellipse(point):
         return True
     else:
         return False
+
+def obstacle_space_polygon(point):
+    pt1 = [25,185]
+    pt1 = [20,120]
+    pt1 = [50,150]
+    pt1 = [75,120]
+    pt1 = [100,150]
+    pt1 = [175,185]
+
+    x = point[0]
+    y = point[1]
+
+    line_1 = ((y-185)*5) - ((x-25)*65)
+    line_2 = ((y-120)*30) - ((x-20)*30)
+    line_3 = ((y-150)*25) - ((x-50)*30)
+    line_4 = ((y-120)*25) - ((x-75)*30)
+    line_5 = ((y-150)*25) - ((x-100)*35)
+    line_6 = ((y-185)*(-50))
+
+
+
 
 def draw_obstacle(x,y):
     flag = 0    
