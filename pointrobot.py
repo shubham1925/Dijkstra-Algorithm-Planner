@@ -47,7 +47,7 @@ def obstacle(x,y):
 #init = [50,170]
 
 
-def obstacle_space_square(point, clearance):
+def obstacle_space_rectangel(point):
     # four points in a square
     flag_check = 0
     pt1 = [35,76]
@@ -103,6 +103,21 @@ def obstacle_space_circle(point):
     d = sqrt(((x-radius_x)**2) + ((y-radius_y)**2))
 
     if d < radius:
+        return True
+    else:
+        return False
+
+def obstacle_space_ellipse(point):
+    semi_major_axis = 40
+    center_x = 150
+    center_y = 100
+
+    x = point[0]
+    y = point[1]
+
+    d = ((x-center_x)**2)/(semi_major_axis**2) + ((y-center_y)**2)/(semi_major_axis**2)
+
+    if d <= 1:
         return True
     else:
         return False
