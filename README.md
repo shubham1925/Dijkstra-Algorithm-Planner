@@ -50,9 +50,11 @@ The code contains two .py files
 
 2. rigidrobot.py
 
-Run the code on the commandline using the follwoing command `python3 pointrobot.py` and `rigidrobot.py`
 
-**For point robot**:
+**For Point Robot**: 
+
+Run the code on the command line using the following command `python3 pointrobot.py`
+
 
 The user will be prompted for:
 
@@ -75,7 +77,9 @@ The user will be prompted for:
 `Enter clearance of the robot: 0`
 
 
-**For rogod robot**
+**For Rigid Robot**
+
+Run the code on the command line using the following command `python3 rigidrobot.py`
 
 The user will be prompted for:
 
