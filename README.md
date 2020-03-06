@@ -4,25 +4,25 @@
 
 ## **Team Members:**
 
-  * Shubham Sonawane (UID:  )
+  * Shubham Sonawane (UID: 116808996 )
   * Revati Naik (UID: 116723015)
 
 ## **Problem Statement:**
-Find the most optimal path from initial node to goal node using Dijkstra's Algorithm.
+Find the optimal path from initial node to goal node using Dijkstra's Algorithm.
 
 
 
 This project is divided into three sub-questions:
 
-1. Checking the fesability of the given start node and goal node (if they lie in the obstacle space)
+1. Checking the feasibility of the given start node and goal node (if they lie in the obstacle space)
 
-2. Implementing Dijkstra's Algorithm to find path between start node and goal node on a given map for point robot and rigid roobt
+2. Implementing Dijkstra's Algorithm to find path between start node and goal node on a given map for point robot and rigid robot
 
 3. Output an animation of optimal path from start node to goal node on the graph. 
 
 ## **Approach:**
 
-The input points (start node and goal node) are forst checked if they lie in the obstacle space. 
+The input points (start node and goal node) are first checked if they lie in the obstacle space. 
 
 If not, then the program proceeds to find the optimal path from start node to goal node using Dijkstra's algorithm. 
 
@@ -36,24 +36,26 @@ The program then backtracks the optimal path and outputs it in the form of animn
 
 2. pygame : Install pygame pacakge from python3 using the following command on the terminal  `pip install pygame`
 
-
 3. numpy : Install numpy pacakge from python3 using the following command on the terminal  `pip install numpy`
 
+4. math: Install math package from python3 using the following command on the terminal `pip install math`
 
+5. sys
 
+6.time
 
 ## **Running the code:**
 
 The code contains two .py files
 
-1. pointrobot.py
+1. Dijkstra_point.py
 
-2. rigidrobot.py
+2. Dijkstra_rigid.py
 
 
 **For Point Robot**: 
 
-Run the code on the command line using the following command `python3 pointrobot.py`
+Run the code on the command line using the following command `python3 Dijkstra_point.py`
 
 
 The user will be prompted for:
@@ -73,7 +75,7 @@ The user will be prompted for:
 
 **For Rigid Robot**
 
-Run the code on the command line using the following command `python3 rigidrobot.py`
+Run the code on the command line using the following command `python3 Dijkstra_rigid.py`
 
 The user will be prompted for:
 
@@ -81,7 +83,7 @@ The user will be prompted for:
 
 2. Radius of the robot
 
-3. Clearnace of the robot
+3. Clearance of the robot
 
 `Enter x coordinate of start position: x_start`
 
@@ -94,3 +96,5 @@ The user will be prompted for:
 `Enter radius of the robot: `
 
 `Enter clearance of the robot:`
+
+The time taken by the point robot to go from (5,5) to (295,195) is approximately 7 minutes 40 seconds
