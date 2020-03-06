@@ -97,4 +97,15 @@ The user will be prompted for:
 
 `Enter clearance of the robot:`
 
+## **Running the test case:**
+
+`Enter x coordinate of start position: 5`
+
+`Enter y coordinate of start position: 5`
+
+`Enter x coordinate of goal position: 295`
+
+`Enter y coordinate of goal position: 195`
+
+
 The time taken by the point robot to go from (5,5) to (295,195) is approximately 7 minutes 40 seconds
