@@ -60,9 +60,6 @@ The user will be prompted for:
 
 1. Coordinates of the start node and the goal node 
 
-2. Radius of the robot ( radius = 0 )
-
-3. Clearnace of the robot ( clearance = 0 )
 
 `Enter x coordinate of start position: x_start`
 
@@ -72,9 +69,6 @@ The user will be prompted for:
 
 `Enter y coordinate of goal position: y_goal`
 
-`Enter radius of the robot: 0 `
-
-`Enter clearance of the robot: 0`
 
 
 **For Rigid Robot**
