@@ -23,7 +23,12 @@ This project is divided into three sub-questions:
 ## **Approach:**
 
 The input points (start node and goal node) are forst checked if they lie in the obstacle space. 
-If not, then the program proceeds to find the optimal path from start node to goal node using Dijkstra's algorithm. This is implemented for both the point robot (no dimension) and the rigid robot (dimension and clearance to be considered). The program then backtracks the optimal path and outputs it in the form of animnation using `pygame` package. 
+
+If not, then the program proceeds to find the optimal path from start node to goal node using Dijkstra's algorithm. 
+
+This is implemented for both the point robot (no dimension) and the rigid robot (dimension and clearance to be considered). 
+
+The program then backtracks the optimal path and outputs it in the form of animnation using `pygame` package. 
 
 ## **Dependencies:**
 
@@ -49,8 +54,11 @@ Run the code on the commandline using the follwoing command `python3 pointrobot.
 The user will be prompted to give the coordinates of the start node and the goal node. 
 
 `Enter x coordinate of start position: x_start`
+
 `Enter y coordinate of start position: y_start`
+
 `Enter x coordinate of goal position: x_goal`
+
 `Enter y coordinate of goal position: y_goal`
 
 
