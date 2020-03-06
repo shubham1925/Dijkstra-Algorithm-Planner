@@ -29,6 +29,11 @@ Install shapely pacakge from python3 using the following command on the terminal
 
 ## **Running the code:**
 
-Run the code on the commandline using the follwoing command `python3 main.py`
+There are two .py files
+
+1. pointrobot.py
+2. rigidrobot.py
+
+Run the code on the commandline using the follwoing command `python3 pointrobot.py` and `rigidrobot.py`
 
 
