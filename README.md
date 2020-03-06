@@ -42,7 +42,7 @@ The program then backtracks the optimal path and outputs it in the form of animn
 
 5. sys
 
-6.time
+6. time
 
 ## **Running the code:**
 
