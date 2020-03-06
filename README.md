@@ -21,7 +21,7 @@ This project is divided into three sub-questions:
 3. Output an animation of optimal path from start node to goal node on the graph. 
 
 
-## ** Dependencies:**
+## **Dependencies:**
 
 1. shapely 
 
