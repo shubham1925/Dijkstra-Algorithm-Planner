@@ -1,6 +1,4 @@
 import math
-from shapely.geometry import Point
-from shapely.geometry.polygon import Polygon
 import sys
 import pygame
 from pygame.locals import QUIT, MOUSEBUTTONUP
@@ -15,53 +13,36 @@ start_y = int(input("Enter y coordinate of start position: "))
 goal_x = int(input("Enter x coordinate of goal position: "))
 goal_y = int(input("Enter y coordinate of goal position: "))
 
-#
-# Calculate Manhattan Heuristics
-#
-# :param      x1:   The x 1
-# :type       x1:   { type_description }
-# :param      y1:   The y 1
-# :type       y1:   { type_description }
-# :param      x2:   The x 2
-# :type       x2:   { type_description }
-# :param      y2:   The y 2
-# :type       y2:   { type_description }
-#
-# :returns:   { description_of_the_return_value }
-# :rtype:     { return_type_description }
-#
+"""Calculates the manhattan distance between two points
+
+Args:
+    x1,y1,x2,y2: coordinates of the 2 points
+    
+Returns:
+    Manhattan distance
+"""
 def manhattan_heuristics(x1,y1,x2,y2):
     return abs(x1-x2) + abs(y1-y2)
 
-#
-# Calculate Euclidean Heuristics
-#
-# :param      x1:   The x 1
-# :type       x1:   { type_description }
-# :param      y1:   The y 1
-# :type       y1:   { type_description }
-# :param      x2:   The x 2
-# :type       x2:   { type_description }
-# :param      y2:   The y 2
-# :type       y2:   { type_description }
-#
-# :returns:   { description_of_the_return_value }
-# :rtype:     { return_type_description }
-#
+"""Calculates the euclidean distance between two points
+
+Args:
+    x1,y1,x2,y2: coordinates of the 2 points
+    
+Returns:
+    Euclidean distance
+"""
 def euclidean_heuristics(x1,y1,x2,y2):
     return math.sqrt((x1-x2)**2 + (y1-y2)**2)
 
-#
-# Defining the obstacle space
-#
-# :param      x:    x co-ordinate of the point robot
-# :type       x:    int 
-# :param      y:    y co-ordinate of the point robot
-# :type       y:    int
-#
-# :returns:   Returns True if the point lies in the obstacle space. Else returns False
-# :rtype:     boolean
-#
+"""Checks for obstacles at any particular point
+
+Args:
+    x,y: coordinates of the point to be checked
+    
+Returns:
+    Flag indicating presence or absence of obstacles
+"""
 def obstacle(x,y):
     flag = 0
     flag_1 = 0
@@ -119,46 +100,16 @@ def obstacle(x,y):
     #ellipse
     if (((x - (150))/(40))**2 + ((y - (100))/(20))**2 - 1) <= 0:
         flag = 1    
-    return flag    
-    
-#
-# Draw the obstacle space
-#
-# :param      x:    { parameter_description }
-# :type       x:    { type_description }
-# :param      y:    { parameter_description }
-# :type       y:    { type_description }
-#
-# :returns:   Returns True if the point lies inside the osbstacle space
-# :rtype:     boolean
-#
-def draw_obstacle(x,y):
-    flag = 0    
-    point = Point(x,y)
-    rectangle = Polygon([(35, 76), (100, 39),(95, 30), (30, 68)])
-    complex_polygon = Polygon([(25, 185), (75, 185),(100, 150), (75, 120), (50,150), (20,120)])
-    kite = Polygon([(225, 40), (250, 25),(225, 10), (200, 25)])
-    #circle
-    if(((x - (225))**2 + (y - (150))**2 - (25)**2) <= 0) :
-        flag = 1
-    #ellipse
-    if (((x - (150))/(40))**2 + ((y - (100))/(20))**2 - 1) <= 0:
-        flag = 1
-    #check if point is inside polygon
-    if rectangle.contains(point) == True:
-        flag = 1
-    if complex_polygon.contains(point) == True:
-        flag = 1
-    if kite.contains(point) == True:
-        flag = 1
-    return flag
+    return flag  
 
-#
-# Generating obstacle map
-#
-# :returns:   obstacle list of [x,y] co-ordinates
-# :rtype:     list
-#
+"""Generate obstacle map
+
+Args:
+   None
+    
+Returns:
+    List containing obstacles
+"""
 def generate_obstacle_map():
     obstacle_list = []
     for x in range(0,xmax+1):
@@ -167,17 +118,14 @@ def generate_obstacle_map():
                 obstacle_list.append([x,y])
     return obstacle_list
 
-#
-# Check if the start node is valid i.e if it lies in the obstacle space or not
-#
-# :param      x:    { parameter_description }
-# :type       x:    { type_description }
-# :param      y:    { parameter_description }
-# :type       y:    { type_description }
-#
-# :returns:   True if the start node of the point robot lies in the obstacle space. Else False
-# :rtype:     boolean
-#
+"""Check start position
+
+Args:
+   x,y:start point
+    
+Returns:
+    False if invalid start point
+"""
 def CheckStart(x,y):
     if obstacle(x,y) or x not in range(0,xmax+1) or y not in range(0,ymax+1):
         print("Start position invalid")
@@ -185,24 +133,20 @@ def CheckStart(x,y):
     else:
         return True
 
-#
-# Check if the goal node is valid i.e if it lies in the obstacle space or not
-#
-# :param      x:    { parameter_description }
-# :type       x:    { type_description }
-# :param      y:    { parameter_description }
-# :type       y:    { type_description }
-#
-# :returns:   True if the start node of the point robot lies in the obstacle space. Else False
-# :rtype:     boolean
-#
+"""Check goal position
+
+Args:
+   x,y:goal point
+    
+Returns:
+    False if invalid goal point
+"""
 def CheckGoal(x,y):
     if obstacle(x,y) or x not in range(0,xmax+1) or y not in range(0,ymax+1):
         print("Goal position invalid")
         return False
     else:
         return True
-
 
 if CheckStart(start_x,start_y) == False or CheckGoal(goal_x, goal_y) == False:
     print(sys.exit())
@@ -231,14 +175,14 @@ animation_flag = 0
 
 tic = time.time()
 
+"""Move robot
 
-#
-# Actions for the robot
-#
-# :param      prev_node:  The previous node
-# :type       prev_node:  { type_description }
-#
-
+Args:
+   prev_node:previous node
+    
+Returns:
+    None
+"""
 def MoveUp(prev_node):    
     current=prev_node[:]
     x,y = current[0], current[1] + 1
@@ -303,12 +247,14 @@ def MoveUpLeft(prev_node):
     cost=h+cumulative_cost
     IsMoveWorthy(x,y,cost,prev_node)
 
-#
-# Defining the Iterations
-#
-# :param      node:  The node
-# :type       node:  { type_description }
-#
+"""Move oover action space
+
+Args:
+   node:node from where the expansion is to be done
+    
+Returns:
+    None
+"""
 def iteration(node):
     MoveUp(node)
     MoveRight(node)
@@ -318,20 +264,15 @@ def iteration(node):
     MoveDownRight(node)
     MoveDownLeft(node)
     MoveUpLeft(node)
+    
+"""Check if the move is worthy i.e less cost
 
-
-#
-# Check if the node value should be changed
-#
-# :param      x:          { parameter_description }
-# :type       x:          { type_description }
-# :param      y:          { parameter_description }
-# :type       y:          { type_description }
-# :param      cost:       The cost
-# :type       cost:       { type_description }
-# :param      prev_node:  The previous node
-# :type       prev_node:  { type_description }
-#
+Args:
+   x,y, cost, prev_node
+    
+Returns:
+    None
+"""
 def IsMoveWorthy(x,y,cost,prev_node):
     flag = obstacle(x,y)
     current = []
