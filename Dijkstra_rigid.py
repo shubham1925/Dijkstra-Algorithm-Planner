@@ -18,14 +18,36 @@ goal_y = int(input("Enter y coordinate of goal position: "))
 radius = int(input("Enter radius of the robot: "))
 clearance = int(input("Enter clearance of the robot: "))
 
+"""Calculates the manhattan distance between two points
+
+Args:
+    x1,y1,x2,y2: coordinates of the 2 points
+    
+Returns:
+    Manhattan distance
+"""
 def manhattan_heuristics(x1,y1,x2,y2):
     return abs(x1-x2) + abs(y1-y2)
 
-#euclidean distance gave better results
+"""Calculates the euclidean distance between two points
+
+Args:
+    x1,y1,x2,y2: coordinates of the 2 points
+    
+Returns:
+    Euclidean distance
+"""
 def euclidean_heuristics(x1,y1,x2,y2):
     return math.sqrt((x1-x2)**2 + (y1-y2)**2)
 
-#Function for detecting obstacles while exploring using half planes
+"""Checks for obstacles at any particular point
+
+Args:
+    x,y: coordinates of the point to be checked
+    
+Returns:
+    Flag indicating presence or absence of obstacles
+"""
 def obstacle(x,y):
     flag = 0
     flag_1 = 0
@@ -110,7 +132,14 @@ def draw_obstacle(x,y):
         flag = 1
     return flag
 
-#Generate a list storing all the obstacles
+"""Generate obstacle map
+
+Args:
+   None
+    
+Returns:
+    List containing obstacles
+"""
 def generate_obstacle_map():
     obstacle_list = []
     for x in range(0,xmax+1):
@@ -119,7 +148,14 @@ def generate_obstacle_map():
                 obstacle_list.append([x,y])
     return obstacle_list
 
-#Check if start position is valid
+"""Check start position
+
+Args:
+   x,y:start point
+    
+Returns:
+    False if invalid start point
+"""
 def CheckStart(x,y):
     if obstacle(x,y) or x not in range(0,xmax+1) or y not in range(0,ymax+1):
         print("Start position invalid")
@@ -127,7 +163,14 @@ def CheckStart(x,y):
     else:
         return True
 
-#Check if goal position is valid
+"""Check goal position
+
+Args:
+   x,y:goal point
+    
+Returns:
+    False if invalid goal point
+"""
 def CheckGoal(x,y):
     if obstacle(x,y) or x not in range(0,xmax+1) or y not in range(0,ymax+1):
         print("Goal position invalid")
@@ -162,7 +205,14 @@ animation_flag = 0
 
 tic = time.time()
 
-#Define the action spaces
+"""Move robot
+
+Args:
+   prev_node:previous node
+    
+Returns:
+    None
+"""
 def MoveUp(prev_node):    
     current=prev_node[:]
     #Move the robot to the next node
@@ -231,6 +281,14 @@ def MoveUpLeft(prev_node):
     cost=h+cumulative_cost
     IsMoveWorthy(x,y,cost,prev_node)
 
+"""Move oover action space
+
+Args:
+   node:node from where the expansion is to be done
+    
+Returns:
+    None
+"""
 def iteration(node):
     MoveUp(node)
     MoveRight(node)
@@ -241,6 +299,14 @@ def iteration(node):
     MoveDownLeft(node)
     MoveUpLeft(node)
 
+"""Check if the move is worthy i.e less cost
+
+Args:
+   x,y, cost, prev_node
+    
+Returns:
+    None
+"""
 def IsMoveWorthy(x,y,cost,prev_node):
     flag = obstacle(x,y)
     current = []
